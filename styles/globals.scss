@@ -1,6 +1,15 @@
 @use 'variables';
 @use 'mixins';
 
+@each $font in 'Caveat', 'Karla' {
+  @font-face {
+    font-display: block;
+    font-family: $font;
+    font-weight: 400 700;
+    src: url('/fonts/#{$font}.ttf') format('truetype');
+  }
+}
+
 * {
   box-sizing: border-box;
   font-family: inherit;
@@ -38,6 +47,10 @@ main {
 
   @media (min-width: 1024px) {
     grid-template-columns: max-content repeat(2, minmax(320px, max-content));
+  }
+
+  & > div {
+    grid-column-end: span 2;
   }
 }
 
