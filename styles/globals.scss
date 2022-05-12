@@ -1,0 +1,67 @@
+@use 'variables';
+@use 'mixins';
+
+* {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
+
+html {
+  font-family: variables.$font-cursive;
+  font-size: 62.5%;
+  min-width: 360px;
+}
+
+body {
+  background-color: variables.$color-100;
+  color: variables.$color-400;
+  font-size: 2rem;
+}
+
+main {
+  padding: 24px 16px;
+
+  @media (min-width: 540px) {
+    padding: 24px;
+  }
+
+  @media (min-width: 720px) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, max-content));
+    justify-content: space-evenly;
+    padding: 24px 0;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: max-content repeat(2, minmax(320px, max-content));
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-size: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
