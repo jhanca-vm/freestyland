@@ -3,6 +3,7 @@
 
 .container {
   border-spacing: 0;
+  height: fit-content;
   margin: 4px 0 24px;
   width: 100%;
 
@@ -30,6 +31,7 @@
       content: 'Tabla de Posiciones';
       font-size: 1.8rem;
       left: 0;
+      line-height: 1;
       position: absolute;
       right: 0;
       text-align: left;

@@ -9,6 +9,12 @@ const Home: NextPage<{ matchdays: Matchday[] }> = ({ matchdays }) => (
   <>
     <Head>
       <title>Freestyland</title>
+      <meta
+        name="description"
+        content="Mantente al tanto de todas las fechas, jornadas, resultados, 
+          posiciones, etc. De todas las ligas de FMS y FMS Internacional."
+      />
+      <meta name="keywords" content="FMS,batallas,fechas,jornada,tabla" />
     </Head>
     <NextMatchdays matchdays={matchdays} />
   </>

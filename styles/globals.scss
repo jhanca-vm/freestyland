@@ -23,6 +23,7 @@ html {
   font-family: variables.$font-cursive;
   font-size: 62.5%;
   min-width: 360px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -68,6 +69,7 @@ button {
   background: none;
   border: none;
   color: inherit;
+  cursor: pointer;
 }
 
 a {

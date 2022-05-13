@@ -20,10 +20,20 @@ const FMS: NextPage<Props> = ({ errorCode, table, matchdays }) => {
 
   if (errorCode) return <Error statusCode={errorCode} />
 
+  const country = countries.get(String(query.country))![0]
+
   return (
     <>
       <Head>
-        <title>FMS {countries.get(String(query.country))![0]}</title>
+        <title>FMS {country}</title>
+        <meta
+          name="description"
+          content={`Resultados y la tabla de posiciones de la FMS ${country}`}
+        />
+        <meta
+          name="keywords"
+          content={`FMS,${country},tabla,jornada,resultados`}
+        />
       </Head>
       <Table data={table} />
       <Matchdays data={matchdays} />
