@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import type { PostgrestResponse } from '@supabase/supabase-js'
 import type { Matchday } from 'lib/types'
 import Head from 'next/head'
@@ -15,12 +15,18 @@ const Home: NextPage<{ matchdays: Matchday[] }> = ({ matchdays }) => (
           posiciones, etc. De todas las ligas de FMS y FMS Internacional."
       />
       <meta name="keywords" content="FMS,batallas,fechas,jornada,tabla" />
+      <meta property="og:title" content="Freestyland" />
+      <meta
+        property="og:description"
+        content="Mantente al tanto de todas las fechas, jornadas, resultados, 
+          posiciones, etc. De todas las ligas de FMS y FMS Internacional."
+      />
     </Head>
     <NextMatchdays matchdays={matchdays} />
   </>
 )
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data: matchdays }: PostgrestResponse<Matchday> = await supabase
     .from('matchday')
     .select('id,name,league,date,city,battles(data)')

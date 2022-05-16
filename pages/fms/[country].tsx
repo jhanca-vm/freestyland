@@ -34,6 +34,11 @@ const FMS: NextPage<Props> = ({ errorCode, table, matchdays }) => {
           name="keywords"
           content={`FMS,${country},tabla,jornada,resultados`}
         />
+        <meta property="og:title" content={`FMS ${country}`} />
+        <meta
+          property="og:description"
+          content={`Resultados y la tabla de posiciones de la FMS ${country}`}
+        />
       </Head>
       <Table data={table} />
       <Matchdays data={matchdays} />

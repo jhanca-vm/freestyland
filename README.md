@@ -1,5 +1,7 @@
 # Freestyland
 
+Get information about all FMS leagues and FMS International.
+
 ## Getting Started
 
 First, run the development server:
