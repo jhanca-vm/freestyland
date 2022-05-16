@@ -1,10 +1,24 @@
+import type { MutableRefObject } from 'react'
 import Link from 'next/link'
-import { useState } from 'react'
-import countries from 'lib/utils/countries'
+import { useEffect, useRef, useState } from 'react'
+import Menu from 'components/Menu'
 import styles from './styles.module.scss'
 
 export default function Header() {
   const [menuIsHidden, setMenuIsHidden] = useState(true)
+  const mediaQuery: MutableRefObject<MediaQueryList | null> = useRef(null)
+
+  const hideMenu = () => {
+    if (!mediaQuery.current?.matches) setMenuIsHidden(true)
+  }
+
+  useEffect(() => {
+    mediaQuery.current = matchMedia('(min-width: 1024px)')
+    mediaQuery.current.onchange = ({ matches }: MediaQueryListEvent) => {
+      matches ? setMenuIsHidden(false) : setMenuIsHidden(true)
+    }
+    mediaQuery.current.matches ? setMenuIsHidden(false) : setMenuIsHidden(true)
+  }, [])
 
   return (
     <header
@@ -12,7 +26,7 @@ export default function Header() {
       style={{ position: menuIsHidden ? 'static' : 'sticky' }}
     >
       <Link href="/">
-        <a onClick={() => setMenuIsHidden(true)}>Freestyland</a>
+        <a onClick={hideMenu}>Freestyland</a>
       </Link>
       <button
         className={styles[`icon-${menuIsHidden ? 'menu' : 'close'}`]}
@@ -21,21 +35,7 @@ export default function Header() {
         <span />
         <span />
       </button>
-      <nav style={{ display: menuIsHidden ? 'none' : 'block' }}>
-        <ul>
-          {Array.from(countries)
-            .filter(([country]) => country !== 'international')
-            .map(([country, [name, emoji]]) => (
-              <li key={country}>
-                <Link href={`/fms/${country}`}>
-                  <a onClick={() => setMenuIsHidden(true)}>
-                    {emoji} FMS {name}
-                  </a>
-                </Link>
-              </li>
-            ))}
-        </ul>
-      </nav>
+      <Menu menuIsHidden={menuIsHidden} hideMenu={hideMenu} />
     </header>
   )
 }

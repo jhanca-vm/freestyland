@@ -38,19 +38,19 @@ export default function Matchdays({ data }: Props) {
             <ul className={styles.battles}>
               {battles.map(({ data }) => (
                 <li key={Object.keys(data).join('-')}>
-                  <span>{data[Object.keys(data)[0]]?.points ?? '-'}</span>
+                  <span>{data[Object.keys(data)[0]].points ?? '-'}</span>
                   <p>
                     {Object.keys(data)[0]}
                     <br />
-                    {data[Object.keys(data)[0]]?.ptb ?? '-'}
+                    {data[Object.keys(data)[0]].ptb ?? '-'}
                   </p>
                   vs
                   <p>
                     {Object.keys(data)[1]}
                     <br />
-                    {data[Object.keys(data)[1]]?.ptb ?? '-'}
+                    {data[Object.keys(data)[1]].ptb ?? '-'}
                   </p>
-                  <span>{data[Object.keys(data)[1]]?.points ?? '-'}</span>
+                  <span>{data[Object.keys(data)[1]].points ?? '-'}</span>
                 </li>
               ))}
             </ul>

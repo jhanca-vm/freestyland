@@ -13,9 +13,12 @@
 
   & > div {
     @media (min-width: 720px) {
-      column-gap: 24px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      columns: 2;
+      gap: 24px;
+
+      section {
+        break-inside: avoid;
+      }
     }
   }
 }
@@ -23,6 +26,7 @@
 .matchday {
   background-color: variables.$color-200;
   border-radius: 16px;
+  height: fit-content;
   margin-bottom: 24px;
   padding-top: 1.2rem;
   text-align: center;

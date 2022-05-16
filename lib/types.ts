@@ -1,11 +1,5 @@
 type Battle = {
-  data: Record<
-    string,
-    null | {
-      ptb: number
-      points: number
-    }
-  >
+  data: Record<string, { ptb: number | null; points: number | null }>
 }
 
 export interface Matchday {

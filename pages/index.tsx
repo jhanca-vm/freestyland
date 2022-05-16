@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import type { PostgrestResponse } from '@supabase/supabase-js'
 import type { Matchday } from 'lib/types'
 import Head from 'next/head'
@@ -20,7 +20,7 @@ const Home: NextPage<{ matchdays: Matchday[] }> = ({ matchdays }) => (
   </>
 )
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data: matchdays }: PostgrestResponse<Matchday> = await supabase
     .from('matchday')
     .select('id,name,league,date,city,battles(data)')
