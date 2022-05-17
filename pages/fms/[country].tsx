@@ -1,11 +1,10 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import type { PostgrestResponse } from '@supabase/supabase-js'
 import type { Matchday, MC } from 'lib/types'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Error from 'next/error'
 import countries from 'lib/utils/countries'
-import supabase from 'lib/utils/supabase'
+import supabase, { getMatchdaysByCountry } from 'lib/utils/supabase'
 import Table from 'components/Table'
 import Matchdays from 'components/Matchdays'
 
@@ -54,23 +53,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return { props: { errorCode: 404 } }
   }
 
-  const [{ data: table }, { data: matchdays }]: [
-    PostgrestResponse<MC>,
-    PostgrestResponse<Matchday>
-  ] = await Promise.all([
+  const [matchdays, { data: table }] = await Promise.all([
+    getMatchdaysByCountry(String(params?.country)),
     supabase
       .from('mc')
       .select('name,battles,ptb,points')
       .eq('fms', params?.country)
       .order('points', { ascending: false })
       .order('ptb', { ascending: false }),
-    supabase
-      .from('matchday')
-      .select('id,name,mvp,date,city,battles(data)')
-      .textSearch('id', String(params?.country))
-      .neq('mvp', null)
-      .order('date', { ascending: false })
-      .order('order', { foreignTable: 'battles' }),
   ])
 
   return { props: { table, matchdays } }

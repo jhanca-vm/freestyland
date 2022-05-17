@@ -18,22 +18,22 @@ export default function Menu({ menuIsHidden, hideMenu }: Props) {
       style={{ display: menuIsHidden ? 'none' : 'block' }}
     >
       <ul>
-        {Array.from(countries)
-          .filter(([country]) => country !== 'international')
-          .map(([country, [name, emoji]]) => (
-            <li
-              className={
-                query.country === country ? styles['bg-dark'] : undefined
-              }
-              key={country}
+        {Array.from(countries).map(([country, [name, emoji]]) => (
+          <li
+            className={
+              query.country === country ? styles['bg-dark'] : undefined
+            }
+            key={country}
+          >
+            <Link
+              href={`/fms${country === 'international' ? '-' : '/'}${country}`}
             >
-              <Link href={`/fms/${country}`}>
-                <a aria-disabled={query.country === country} onClick={hideMenu}>
-                  {emoji} FMS {name}
-                </a>
-              </Link>
-            </li>
-          ))}
+              <a aria-disabled={query.country === country} onClick={hideMenu}>
+                {emoji} FMS {name}
+              </a>
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   )
