@@ -1,0 +1,27 @@
+$fonts: 'Fresca' normal, 'Kreon' bold
+$color-100: #2e3440
+$color-200: #3B4252
+$color-300: #434c5e
+$color-400: #4C566A
+$color-500: #D8DEE9
+$color-600: #ECEFF4
+
+%panel
+  @media (min-width: 1280px)
+    background-color: rgba($color-300, 0.6)
+    border: 1px solid $color-200
+    border-radius: 16px
+    overflow-y: auto
+
+    &::-webkit-scrollbar
+      width: 8px
+
+    &::-webkit-scrollbar-track
+      background: $color-400
+      border-radius: 16px 0 0 16px
+      margin: 16px 0
+
+    &::-webkit-scrollbar-thumb
+      background-color: rgba($color-500, 0.6)
+      border: 2px solid $color-400
+      border-radius: 16px 0 0 16px
